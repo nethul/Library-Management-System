@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.library_management_system.controller.MainMenuController">
+   <children>
+      <JFXButton layoutX="70.0" layoutY="140.0" minHeight="0.0" minWidth="0.0" onAction="#btnMembersOnAction" prefHeight="76.0" prefWidth="154.0" style="-fx-background-color: #399918;" text="Members" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="355.0" layoutY="140.0" onAction="#btnCategoriesOnAction" prefHeight="76.0" prefWidth="154.0" style="-fx-background-color: #B60071;" text="Categories" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="70.0" layoutY="265.0" onAction="#btnBooksOnAction" prefHeight="76.0" prefWidth="154.0" style="-fx-background-color: #478CCF;" text="Books" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="355.0" layoutY="265.0" onAction="#btnBorrowingsOnAction" prefHeight="76.0" prefWidth="154.0" style="-fx-background-color: #F4CE14;" text="Borrowings" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></JFXButton>
+      <Label alignment="CENTER" layoutX="80.0" layoutY="23.0" prefHeight="76.0" prefWidth="441.0" text="Library Management System">
+         <font>
+            <Font name="Corbel Light" size="34.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

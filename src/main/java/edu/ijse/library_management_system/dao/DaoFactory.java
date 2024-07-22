@@ -1,6 +1,7 @@
 package edu.ijse.library_management_system.dao;
 
 import edu.ijse.library_management_system.dao.custom.impl.AdminDaoImpl;
+import edu.ijse.library_management_system.dao.custom.impl.MemberDaoImpl;
 
 public class DaoFactory {
     private static DaoFactory daoFactory;
@@ -15,12 +16,13 @@ public class DaoFactory {
     public SuperDao getDao(DaoTypes daoType){
         switch (daoType) {
             case ADMIN : return new AdminDaoImpl();
+            case MEMBER : return new MemberDaoImpl();
             default: return null;
                 
         }
     }
 
     public enum DaoTypes{
-        ADMIN, BOOK
+        ADMIN, MEMBER, BOOK
     }
 }

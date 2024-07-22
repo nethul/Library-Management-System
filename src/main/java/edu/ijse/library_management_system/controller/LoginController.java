@@ -3,12 +3,12 @@ package edu.ijse.library_management_system.controller;
 import java.io.IOException;
 
 import edu.ijse.library_management_system.dto.AdminDto;
-import edu.ijse.library_management_system.entity.AdminEntity;
+
 import edu.ijse.library_management_system.service.ServiceFactory;
 import edu.ijse.library_management_system.service.custom.AdminService;
-import edu.ijse.library_management_system.service.custom.LoginService;
 
-import org.springframework.stereotype.Controller;
+
+
 
 import com.jfoenix.controls.JFXButton;
 
@@ -57,6 +57,11 @@ public class LoginController {
             alert.setHeaderText("Login successfull");
             alert.setContentText("Hello" + " " + adminDto.getName());
             alert.showAndWait();
+            
+            this.root.getChildren().clear();
+            Parent node = FXMLLoader.load(getClass().getResource("/edu/ijse/library_management_system/view/mainMenu.fxml"));
+            this.root.getChildren().add(node);
+            
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.library_management_system.controller.MemberController">
+   <children>
+      <Label alignment="CENTER" layoutX="170.0" prefHeight="61.0" prefWidth="372.0" text="Members" textFill="#0b66db">
+         <font>
+            <Font name="Cambria" size="29.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblMember" layoutX="41.0" layoutY="298.0" prefHeight="272.0" prefWidth="622.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="99.0" text="ID" />
+          <TableColumn fx:id="colTitle" prefWidth="76.0" text="Title" />
+            <TableColumn fx:id="colName" prefWidth="187.0" text="Name" />
+            <TableColumn fx:id="colContact" minWidth="0.0" prefWidth="139.0" text="Contact No." />
+            <TableColumn fx:id="colMemberSince" prefWidth="120.0" text="Member Since" />
+        </columns>
+      </TableView>
+      <Label layoutX="67.0" layoutY="75.0" prefHeight="28.0" prefWidth="48.0" text="ID">
+         <font>
+            <Font name="Courier New Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="356.0" layoutY="74.0" prefHeight="28.0" prefWidth="102.0" text="Contact Number">
+         <font>
+            <Font name="Courier New Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="130.0" prefHeight="28.0" prefWidth="48.0" text="Title">
+         <font>
+            <Font name="Courier New Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="355.0" layoutY="131.0" prefHeight="28.0" prefWidth="102.0" text="Member Since">
+         <font>
+            <Font name="Courier New Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="189.0" prefHeight="28.0" prefWidth="48.0" text="Name">
+         <font>
+            <Font name="Courier New Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtId" layoutX="137.0" layoutY="77.0" />
+      <TextField fx:id="txtTitle" layoutX="137.0" layoutY="132.0" />
+      <TextField fx:id="txtName" layoutX="139.0" layoutY="192.0" prefHeight="25.0" prefWidth="295.0" />
+      <TextField fx:id="txtNumber" layoutX="483.0" layoutY="77.0" prefHeight="25.0" prefWidth="172.0" />
+      <TextField fx:id="txtMemberSince" layoutX="483.0" layoutY="132.0" prefHeight="25.0" prefWidth="172.0" />
+      <JFXButton layoutX="553.0" layoutY="249.0" onAction="#btnAddMemberOnAction" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #36C2CE;" text="Add Member" textFill="WHITE" />
+      <JFXButton layoutX="426.0" layoutY="249.0" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #36C2CE;" text="Update" textFill="WHITE" />
+      <JFXButton layoutX="286.0" layoutY="249.0" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #36C2CE;" text="Delete" textFill="WHITE" />
+   </children>
+</AnchorPane>
