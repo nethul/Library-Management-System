@@ -7,8 +7,8 @@ import edu.ijse.library_management_system.service.SuperService;
 
 public interface MemberService extends SuperService  {
     String saveMember(MemberDto memberDto) throws Exception;
-    String updateMember(MemberDto memberDto);
-    String deleteMember(String memberId);
+    String updateMember(MemberDto memberDto) throws Exception;
+    String deleteMember(String memberId) throws Exception;
     MemberDto get(String memberId);
     ArrayList<MemberDto> getAllMembers() throws Exception;
 }

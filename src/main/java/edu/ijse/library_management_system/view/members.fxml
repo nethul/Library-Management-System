@@ -15,7 +15,7 @@
             <Font name="Cambria" size="29.0" />
          </font>
       </Label>
-      <TableView fx:id="tblMember" layoutX="41.0" layoutY="298.0" prefHeight="272.0" prefWidth="622.0">
+      <TableView fx:id="tblMember" layoutX="41.0" layoutY="298.0" onMouseClicked="#loadSelectedMemberToTextField" prefHeight="272.0" prefWidth="622.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="99.0" text="ID" />
           <TableColumn fx:id="colTitle" prefWidth="76.0" text="Title" />

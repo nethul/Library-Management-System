@@ -15,13 +15,13 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
-    public boolean update(MemberEntity t) {
-        return false;
+    public boolean update(MemberEntity t) throws Exception {
+        return CrudUtil.executeUpdate("UPDATE members SET member_title = ?, member_name = ? , contact_number = ?, member_since = ? WHERE member_id = ?", t.getmemberTitle(), t.getmemberName(), t.getContactNumber(), t.getMemberSince(), t.getmemberId());
     }
 
     @Override
-    public boolean delete(String... id) {
-        return false;
+    public boolean delete(String id) throws Exception {
+        return CrudUtil.executeUpdate("DELETE FROM members WHERE member_id = ?", id);
     }
 
     @Override

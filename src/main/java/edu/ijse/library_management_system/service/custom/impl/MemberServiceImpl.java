@@ -22,13 +22,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String updateMember(MemberDto memberDto) {
-       return null;
+    public String updateMember(MemberDto memberDto) throws Exception {
+       return memberDao.update(getMemberEntity(memberDto)) == true ? "Success" : "Failed";
     }
 
     @Override
-    public String deleteMember(String memberId) {
-        return null;
+    public String deleteMember(String memberId) throws Exception {
+        if (memberDao.delete(memberId) == true){
+            return "Success";
+        }else {
+            return "Failed";
+        }
     }
 
     @Override
