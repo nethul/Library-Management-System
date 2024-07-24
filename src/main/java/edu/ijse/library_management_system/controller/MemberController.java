@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class MemberController {
@@ -22,7 +23,8 @@ public class MemberController {
     
     @FXML
     public void initialize(){
-        System.out.println("Initializing");
+       
+        //System.out.println("Initializing");
         colId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         colTitle.setCellValueFactory(new PropertyValueFactory<>("memberTitle"));
         colName.setCellValueFactory(new PropertyValueFactory<>("memberName"));
@@ -32,13 +34,14 @@ public class MemberController {
         try {
             loadTable();
             //System.out.println("loading table");
+           
         } catch (Exception e) {
            e.printStackTrace();
         }
     }
 
     private void loadTable() throws Exception {
-        System.out.println("loading table");
+        //System.out.println("loading table");
        
         ObservableList<MemberDto> observableArrayList = FXCollections.observableArrayList();
         ArrayList<MemberDto> memberDtos = memberService.getAllMembers();
@@ -94,10 +97,10 @@ public class MemberController {
     void btnAddMemberOnAction(ActionEvent event) {
         try {
             MemberDto memberDto = new MemberDto(txtId.getText(), txtTitle.getText(), txtName.getText(), txtNumber.getText(), Date.valueOf(txtMemberSince.getText()));
-            memberService.saveMember(memberDto);
+            String resp = memberService.saveMember(memberDto);
             clearForm();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Saved");
+            alert.setTitle(resp);
             alert.setHeaderText("Member saved Successfully");
             alert.showAndWait();
             loadTable();
@@ -114,12 +117,46 @@ public class MemberController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        try {
+            String resp = memberService.deleteMember(txtId.getText());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(resp);
+            alert.setHeaderText("Member Deleted Successfully");
+            //alert.setContentText("Please make sure that your details are correct");
+            alert.showAndWait();
+            clearForm();
+            loadTable();
+            
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error occured when deleting member");
+            //alert.setContentText("Please make sure that your details are correct");
+            alert.showAndWait();
+        }
+        
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
+       try {
+            MemberDto memberDto = new MemberDto(txtId.getText(), txtTitle.getText(), txtName.getText(), txtNumber.getText(), Date.valueOf(txtMemberSince.getText()));
+            String resp = memberService.updateMember(memberDto);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(resp);
+            alert.setHeaderText("Member updated successfully");
+            //alert.setContentText("Please make sure that your details are correct");
+            alert.showAndWait();
+            clearForm();
+            loadTable();     
+       } catch (Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Error occured when updating member");
+        //alert.setContentText("Please make sure that your details are correct");
+        alert.showAndWait();
+        //e.printStackTrace();
+       }
     }
 
     private void clearForm(){
@@ -128,6 +165,16 @@ public class MemberController {
         txtName.clear();
         txtNumber.clear();
         txtMemberSince.clear();
+    }
+
+    @FXML
+    void loadSelectedMemberToTextField(MouseEvent event) {
+        MemberDto selectedItem = tblMember.getSelectionModel().getSelectedItem();;
+        txtId.setText(selectedItem.getMemberId());
+        txtTitle.setText(selectedItem.getMemberTitle());
+        txtName.setText(selectedItem.getMemberName());
+        txtNumber.setText(selectedItem.getContactNumber());
+        txtMemberSince.setText(selectedItem.getMemberSince().toString());
     }
 
 

@@ -21,7 +21,7 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public boolean delete(String... args) {
+    public boolean delete(String args) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
