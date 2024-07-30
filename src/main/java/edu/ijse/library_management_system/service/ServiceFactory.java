@@ -1,6 +1,8 @@
 package edu.ijse.library_management_system.service;
 
 import edu.ijse.library_management_system.service.custom.impl.AdminServiceImpl;
+import edu.ijse.library_management_system.service.custom.impl.BookServiceImpl;
+import edu.ijse.library_management_system.service.custom.impl.CategoryServiceImpl;
 import edu.ijse.library_management_system.service.custom.impl.MemberServiceImpl;
 
 public class ServiceFactory {
@@ -17,11 +19,13 @@ public class ServiceFactory {
         switch (serviceType) {
             case ADMIN : return new AdminServiceImpl(); 
             case MEMBER : return new MemberServiceImpl();
+            case CATEGORY : return new CategoryServiceImpl();
+            case BOOK : return new BookServiceImpl();
             default : return null;
             }
     }
     
     public enum ServiceType{
-        ADMIN, MEMBER, BOOK , BORROWING , BORROWING_DETAIL
+        ADMIN, MEMBER, CATEGORY, BOOK , BORROWINGS
     }
 }

@@ -16,7 +16,16 @@ public class MainMenuController {
 
     @FXML
     void btnBooksOnAction(ActionEvent event) {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/edu/ijse/library_management_system/view/books.fxml"));
+            Stage seconderyStage = new Stage();
+            Scene scene = new Scene(root);
+            seconderyStage.setScene(scene);
+            seconderyStage.show();
+            seconderyStage.setTitle("Books Menu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -26,7 +35,16 @@ public class MainMenuController {
 
     @FXML
     void btnCategoriesOnAction(ActionEvent event) {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/edu/ijse/library_management_system/view/categories.fxml"));
+            Stage seconderyStage = new Stage();
+            Scene scene = new Scene(root);
+            seconderyStage.setScene(scene);
+            seconderyStage.show();
+            seconderyStage.setTitle("Categories Menu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
