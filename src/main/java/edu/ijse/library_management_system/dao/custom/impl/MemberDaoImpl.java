@@ -26,6 +26,11 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public MemberEntity get(String... args) throws Exception {
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM members WHERE member_id = ?", args[0]);
+        while (rst.next()){
+            MemberEntity memberEntity = new MemberEntity(rst.getString("member_id"), rst.getString("member_title"), rst.getString("member_name"), rst.getString("contact_number"), rst.getDate("member_since"));
+            return memberEntity;
+        }
         return null;
     }
 

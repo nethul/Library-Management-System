@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.library_management_system.controller.BookController">
+   <children>
+      <Label alignment="CENTER" layoutX="237.0" layoutY="14.0" prefHeight="46.0" prefWidth="199.0" text="Books" textFill="#0e6fff">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="83.0" prefHeight="34.0" prefWidth="89.0" text="Book Id" />
+      <Label layoutX="46.0" layoutY="138.0" prefHeight="34.0" prefWidth="89.0" text="Category" />
+      <Label layoutX="356.0" layoutY="140.0" prefHeight="34.0" prefWidth="89.0" text="Author" />
+      <Label layoutX="356.0" layoutY="83.0" prefHeight="34.0" prefWidth="89.0" text="Book Name" />
+      <TextField fx:id="txtBookId" layoutX="115.0" layoutY="88.0" />
+      <TextField fx:id="txtBookName" layoutX="475.0" layoutY="88.0" />
+      <TextField fx:id="txtAuthor" layoutX="475.0" layoutY="144.0" />
+      <ComboBox fx:id="comboBoxCategory" layoutX="115.0" layoutY="143.0" onMouseClicked="#comboBoxCategoryClicked" prefWidth="150.0" />
+      <TableView fx:id="tblBooks" layoutX="45.0" layoutY="236.0" onMouseClicked="#loadBooksToTextFields" prefHeight="304.0" prefWidth="584.0">
+        <columns>
+          <TableColumn fx:id="colId" text="Book Id" />
+          <TableColumn fx:id="colCategory" prefWidth="131.0" text="Category" />
+            <TableColumn fx:id="colName" prefWidth="196.0" text="Book Name" />
+            <TableColumn fx:id="colAuthor" prefWidth="176.0" text="Author" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="560.0" layoutY="188.0" onAction="#btnAddBookOnAction" style="-fx-background-color: #36C2CE;" text="Add Book" textFill="WHITE" />
+      <JFXButton layoutX="469.0" layoutY="188.0" onAction="#btnUpdateOnAction" style="-fx-background-color: #36C2CE;" text="Update" textFill="WHITE" />
+      <JFXButton layoutX="383.0" layoutY="188.0" onAction="#btnDeleteOnAction" style="-fx-background-color: #36C2CE;" text="Delete" textFill="WHITE" />
+   </children>
+</AnchorPane>

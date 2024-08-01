@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.library_management_system.controller.CategoryController">
+   <children>
+      <Label alignment="CENTER" layoutX="117.0" layoutY="14.0" prefHeight="39.0" prefWidth="414.0" text="Categories">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCategoryId" layoutX="252.0" layoutY="85.0" prefHeight="25.0" prefWidth="198.0" promptText="Enter Category ID" />
+      <JFXButton layoutX="436.0" layoutY="182.0" onAction="#btnAddCategoryOnAction" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: #36C2CE;" text="Add Category" textFill="WHITE" />
+      <TableView fx:id="tblCategory" layoutX="104.0" layoutY="226.0" onMouseClicked="#loadTextFields" prefHeight="200.0" prefWidth="428.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="104.0" text="Category ID" />
+          <TableColumn fx:id="colName" prefWidth="323.0" text="Category Name" />
+        </columns>
+      </TableView>
+      <Label layoutX="167.0" layoutY="85.0" prefHeight="25.0" prefWidth="50.0" text="ID" />
+      <Label layoutX="167.0" layoutY="129.0" prefHeight="25.0" prefWidth="50.0" text="Name" />
+      <TextField fx:id="txtCategoryName" layoutX="252.0" layoutY="129.0" prefHeight="25.0" prefWidth="198.0" promptText="Enter Category Name" />
+      <JFXButton layoutX="351.0" layoutY="182.0" onAction="#btnUpdateCategoryOnAction" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #36C2CE;" text="Update " textFill="WHITE" />
+      <JFXButton layoutX="270.0" layoutY="182.0" onAction="#btnDeleteCategoryOnAction" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #36C2CE;" text="Delete" textFill="WHITE" />
+   </children>
+</AnchorPane>
