@@ -1,16 +1,20 @@
 package edu.ijse.library_management_system.controller;
 
 
+import java.sql.Connection;
 import java.sql.Date;
 
+import edu.ijse.library_management_system.db.DBConnection;
 import edu.ijse.library_management_system.dto.MemberDto;
 import edu.ijse.library_management_system.dto.OrderDetailDto;
 import edu.ijse.library_management_system.dto.OrderDto;
+import edu.ijse.library_management_system.dto.OrderTMDto;
 import edu.ijse.library_management_system.service.ServiceFactory;
 import edu.ijse.library_management_system.service.custom.BookService;
 import edu.ijse.library_management_system.service.custom.MemberService;
 import edu.ijse.library_management_system.service.custom.OrderDetailService;
 import edu.ijse.library_management_system.service.custom.OrderService;
+import edu.ijse.library_management_system.service.custom.OrderTMService;
 import edu.ijse.library_management_system.tm.OrderTM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +26,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -32,7 +38,8 @@ public class OrderController {
     MemberService memberService = (MemberService)ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.MEMBER);
     String[] booksArr = new String[2];
     BookService bookService = (BookService)ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.BOOK);
-
+    OrderTMService orderTMService =(OrderTMService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ORDERTM);
+    
     @FXML
     private TableColumn<OrderTM, String> colBookId;
 
@@ -58,7 +65,7 @@ public class OrderController {
     private Label lblMember;
 
     @FXML
-    private TableView<OrderTM> tblOrders;
+    private TableView<OrderTMDto> tblOrders;
 
     @FXML
     private TextField txtBookId;
@@ -153,19 +160,72 @@ public class OrderController {
 
     }
 
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    // @FXML
+    // void btnDeleteOnAction(ActionEvent event) {
 
-    }
+    // }
 
     @FXML
     void btnReturOrderOnAction(ActionEvent event) {
-
+        try {
+            LocalDate today = LocalDate.now();
+            OrderTMDto selectedItem = tblOrders.getSelectionModel().getSelectedItem();
+           
+            
+            if (selectedItem.getDueDate().after(Date.valueOf(today))){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Thank You");
+                alert.setHeaderText("No fine will be charged");
+                alert.setContentText("Thank you for returning the books on time");
+                alert.showAndWait();
+                returnOrder(selectedItem);
+                
+            }else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Fine");
+                alert.setHeaderText("Returning is made past due date");
+                alert.setContentText("Total of " + today.compareTo(selectedItem.getDueDate().toLocalDate()) * 50 + " LKR will be charged" );
+                alert.showAndWait();
+                returnOrder(selectedItem);
+                
+            }
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
     }
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
+    // @FXML
+    // void btnUpdateOnAction(ActionEvent event) {
 
+    // }
+
+    private void returnOrder(OrderTMDto orderTMDto) throws Exception {
+            orderDetailService.deleteOrderDetail(orderTMDto.getOrderId());
+            orderService.deleteOrder(orderTMDto.getOrderId());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Return Success");
+                //alert.setContentText("Total of " + today.compareTo(selectedItem.getDueDate().toLocalDate()) * 50 + " LKR will be charged" );
+                alert.showAndWait();
+                loadTable();
+                
+        // Connection connection = DBConnection.getInstance().getConnection();
+        // connection.setAutoCommit(true);
+        // if(orderDetailService.deleteOrderDetail(orderTMDto.getOrderId()).equals("Success")){
+        //     if(orderService.deleteOrder(orderTMDto.getOrderId()).equals("Success")){
+        //         connection.commit();
+        //         connection.close();
+        //         loadTable();
+        //         System.out.println("Over");
+        //     }else {
+        //         connection.rollback();
+        //     }
+        // }else{
+        //     connection.rollback();
+        // }
+        
     }
 
     @FXML
@@ -198,20 +258,23 @@ public class OrderController {
 
 
     private void loadTable() throws Exception {
-       
-            ArrayList<OrderDto> orderDtos = orderService.getAll();
-            ArrayList<OrderDetailDto> orderDetailDtos = orderDetailService.getAll();
-            ObservableList<OrderTM> observableArrayList = FXCollections.observableArrayList();
-            ArrayList<OrderTM> orderTMs = new ArrayList<>();
-            for (OrderDto orderDto : orderDtos) {
-                OrderTM orderTM = new OrderTM(orderDto.getOrderId(), orderDto.getMemberId(), null, orderDto.getBorrowedDate(), orderDto.getDueDate());
-                orderTMs.add(orderTM);
-            }
-            for (int i = 0; i < orderTMs.size(); i++) {
-                orderTMs.get(i).setBookId(orderDetailDtos.get(i).getBookId());
-            }
+            ArrayList<OrderTMDto> orderTMs = orderTMService.getAll();
+            ObservableList<OrderTMDto> observableArrayList = FXCollections.observableArrayList();
             observableArrayList.addAll(orderTMs);
             tblOrders.setItems(observableArrayList);
+            // ArrayList<OrderDto> orderDtos = orderService.getAll();
+            // ArrayList<OrderDetailDto> orderDetailDtos = orderDetailService.getAll();
+            // ObservableList<OrderTM> observableArrayList = FXCollections.observableArrayList();
+            // ArrayList<OrderTM> orderTMs = new ArrayList<>();
+            // for (OrderDto orderDto : orderDtos) {
+            //     OrderTM orderTM = new OrderTM(orderDto.getOrderId(), orderDto.getMemberId(), null, orderDto.getBorrowedDate(), orderDto.getDueDate());
+            //     orderTMs.add(orderTM);
+            // }
+            // for (int i = 0; i < orderTMs.size(); i++) {
+            //     orderTMs.get(i).setBookId(orderDetailDtos.get(i).getBookId());
+            // }
+            // observableArrayList.addAll(orderTMs);
+            // tblOrders.setItems(observableArrayList);
            
 
           
@@ -225,5 +288,14 @@ public class OrderController {
         txtOrderId.clear();
         txtMemberId.clear();
         txtBookId.clear();
+    }
+
+    @FXML
+    void tblObjectSelectedOnAction(MouseEvent event) throws Exception {
+      OrderTMDto selectedItem = tblOrders.getSelectionModel().getSelectedItem();
+        txtOrderId.setText(selectedItem.getOrderId());
+        txtMemberId.setText(selectedItem.getMemberId());
+        lblMember.setText(memberService.get(selectedItem.getMemberId()).getMemberName());
+    
     }
 }

@@ -17,7 +17,7 @@
       </Label>
       <Label layoutX="74.0" layoutY="63.0" prefHeight="28.0" prefWidth="74.0" text="Order ID" />
       <Label layoutX="74.0" layoutY="107.0" prefHeight="28.0" prefWidth="74.0" text="Member ID" />
-      <TableView fx:id="tblOrders" layoutX="40.0" layoutY="219.0" prefHeight="212.0" prefWidth="594.0">
+      <TableView fx:id="tblOrders" layoutX="40.0" layoutY="219.0" onMouseClicked="#tblObjectSelectedOnAction" prefHeight="212.0" prefWidth="594.0">
         <columns>
           <TableColumn fx:id="colOrderId" prefWidth="79.0" text="Order ID" />
           <TableColumn fx:id="colMemberId" prefWidth="105.0" text="Member ID" />
@@ -32,12 +32,11 @@
       <TextField fx:id="txtBookId" layoutX="473.0" layoutY="65.0" />
       <JFXButton layoutX="553.0" layoutY="97.0" onAction="#btnAddBookOnAction" style="-fx-background-color: #36C2CE;" text="Add Book" textFill="WHITE" />
       <Label fx:id="lblBooks1" layoutX="384.0" layoutY="134.0" prefHeight="25.0" prefWidth="238.0" />
-      <JFXButton layoutX="86.0" layoutY="179.0" onAction="#btnDeleteOnAction" style="-fx-background-color: #36C2CE;" text="Delete" textFill="WHITE" />
-      <JFXButton layoutX="163.0" layoutY="179.0" onAction="#btnUpdateOnAction" style="-fx-background-color: #36C2CE;" text="Update" textFill="WHITE" />
-      <JFXButton layoutX="238.0" layoutY="179.0" onAction="#btnAddOrderOnAction" style="-fx-background-color: #36C2CE;" text="Add Order" textFill="WHITE" />
+      <JFXButton layoutX="284.0" layoutY="179.0" onAction="#btnAddOrderOnAction" style="-fx-background-color: #36C2CE;" text="Add Order" textFill="WHITE" />
       <JFXButton layoutX="503.0" layoutY="446.0" onAction="#btnReturOrderOnAction" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #36C2CE;" text="Return Order" textFill="WHITE" />
       <Label fx:id="lblBooks2" layoutX="384.0" layoutY="166.0" prefHeight="25.0" prefWidth="238.0" />
       <JFXButton layoutX="320.0" layoutY="110.0" onAction="#btnSearchMemberOnAction" style="-fx-background-color: #36C2CE;" text="Search" textFill="WHITE" />
       <Label fx:id="lblMember" layoutX="163.0" layoutY="151.0" prefHeight="17.0" prefWidth="210.0" />
+      <Label layoutX="40.0" layoutY="450.0" prefHeight="17.0" prefWidth="385.0" text="A fine of 50 LKR will be charged for each day of latency of the returns" textFill="#d01010" />
    </children>
 </AnchorPane>

@@ -23,9 +23,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String deleteOrder(String orderId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteOrder'");
+    public String deleteOrder(String orderId) throws Exception {
+        return orderDao.delete(orderId) == true ? "Success" : "Failed";
+        
     }
 
     @Override

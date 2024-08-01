@@ -22,8 +22,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public boolean delete(String id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        return CrudUtil.executeUpdate("DELETE FROM orders WHERE order_id = ?" , id);
     }
 
     @Override
