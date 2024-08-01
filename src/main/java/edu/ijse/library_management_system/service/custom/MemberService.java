@@ -9,6 +9,6 @@ public interface MemberService extends SuperService  {
     String saveMember(MemberDto memberDto) throws Exception;
     String updateMember(MemberDto memberDto) throws Exception;
     String deleteMember(String memberId) throws Exception;
-    MemberDto get(String memberId);
+    MemberDto get(String memberId) throws Exception;
     ArrayList<MemberDto> getAllMembers() throws Exception;
 }

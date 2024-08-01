@@ -4,6 +4,8 @@ import edu.ijse.library_management_system.service.custom.impl.AdminServiceImpl;
 import edu.ijse.library_management_system.service.custom.impl.BookServiceImpl;
 import edu.ijse.library_management_system.service.custom.impl.CategoryServiceImpl;
 import edu.ijse.library_management_system.service.custom.impl.MemberServiceImpl;
+import edu.ijse.library_management_system.service.custom.impl.OrderDetailServiceImpl;
+import edu.ijse.library_management_system.service.custom.impl.OrderServiceImpl;
 
 public class ServiceFactory {
     private static ServiceFactory serviceFactory;
@@ -21,11 +23,13 @@ public class ServiceFactory {
             case MEMBER : return new MemberServiceImpl();
             case CATEGORY : return new CategoryServiceImpl();
             case BOOK : return new BookServiceImpl();
+            case ORDER : return new OrderServiceImpl();
+            case ORDER_DETAIL : return new OrderDetailServiceImpl();
             default : return null;
             }
     }
     
     public enum ServiceType{
-        ADMIN, MEMBER, CATEGORY, BOOK , BORROWINGS
+        ADMIN, MEMBER, CATEGORY, BOOK , ORDER, ORDER_DETAIL
     }
 }

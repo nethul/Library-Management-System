@@ -50,8 +50,7 @@ public class BookDto {
 
     @Override
     public String toString() {
-        return "BookDto [bookId=" + bookId + ", category=" + category + ", bookName=" + bookName + ", author=" + author
-                + "]";
+        return bookName + " - " + author;
     }
 
     

@@ -26,8 +26,13 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public BookEntity get(String... args) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+       ResultSet rst = CrudUtil.executeQuery("SELECT * FROM books WHERE book_id = ?", args[0]);
+        while (rst.next()){
+            BookEntity bookEntity = new BookEntity(rst.getString("book_id"), rst.getString("category_id"), rst.getString("book_name"), rst.getString("author"));
+            return bookEntity;
+        }
+        return null;
+        
     }
 
     @Override

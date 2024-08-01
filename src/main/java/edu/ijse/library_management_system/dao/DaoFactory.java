@@ -4,6 +4,8 @@ import edu.ijse.library_management_system.dao.custom.impl.AdminDaoImpl;
 import edu.ijse.library_management_system.dao.custom.impl.BookDaoImpl;
 import edu.ijse.library_management_system.dao.custom.impl.CategoryDaoImpl;
 import edu.ijse.library_management_system.dao.custom.impl.MemberDaoImpl;
+import edu.ijse.library_management_system.dao.custom.impl.OrderDaoImpl;
+import edu.ijse.library_management_system.dao.custom.impl.OrderDetailDaoImpl;
 
 public class DaoFactory {
     private static DaoFactory daoFactory;
@@ -21,12 +23,14 @@ public class DaoFactory {
             case MEMBER : return new MemberDaoImpl();
             case CATEGORY : return new CategoryDaoImpl();
             case BOOK : return new BookDaoImpl();
+            case ORDER : return new OrderDaoImpl();
+            case ORDER_DETAIL : return new OrderDetailDaoImpl();
             default: return null;
                 
         }
     }
 
     public enum DaoTypes{
-        ADMIN, MEMBER, CATEGORY, BOOK
+        ADMIN, MEMBER, CATEGORY, BOOK, ORDER, ORDER_DETAIL
     }
 }

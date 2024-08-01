@@ -27,8 +27,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDto get(String bookId) {
-        return null;
+    public BookDto get(String bookId) throws Exception {
+        return getBookDto(bookDao.get(bookId));
+        
     }
 
     @Override
